@@ -27,7 +27,8 @@ angular.module('looper.register', ['lbServices', 'ionic'])
             $scope.user = User.create($scope.registration)
                 .$promise
                 .then(function (res) {
-                    console.log(res.avatar);
+                    console.log("Avatar is: " + res.avatar);
+                    console.log("Id is: " + res.id);
                     /**
                      * Save avatar
                      */
@@ -46,7 +47,8 @@ angular.module('looper.register', ['lbServices', 'ionic'])
                                     $scope.showAlert(err.statusText, err.data.error.message);
                                 })
                         }, function (err) {
-                            console.log(err);
+                            //console.log(err);
+                            $scope.showAlert(err.statusText, err.data.error.message);
                         })
                 }, function (err) {
                     $scope.registerError = err;

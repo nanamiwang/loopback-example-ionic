@@ -1,7 +1,14 @@
 {
-  "db": {
-    "name": "db",
+  "old_db": {
+    "name": "old_db",
     "connector": "memory",
     "file": "memoryDb.json"
+  },
+  "db": { 
+    "name": "db",
+    "connector": "mongodb",
+    "host": "127.0.0.1", 
+    "database": "devDB", 
+    "port": 27017 
   }
 }

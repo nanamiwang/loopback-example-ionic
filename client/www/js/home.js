@@ -34,11 +34,8 @@ angular.module('looper.home', ['lbServices'])
         Tweet
             .find({
                 filter: {
-                    order: 'id DESC',
-                    limit: '5',
-                    where: {
-                        id: {lt: $scope.lastTweetId}
-                    }
+                    order: 'date DESC',
+                    limit: '5'
                 }
             })
             .$promise
@@ -89,7 +86,9 @@ angular.module('looper.home', ['lbServices'])
                         .find({filter: {where: {ownerId: values.ownerId}}})
                         .$promise
                         .then(function(res){
-                            values.avatar = res[0].url;
+                            if (res[0]) {
+                                values.avatar = res[0].url;
+                            }
                         });
 
                     /**
@@ -101,7 +100,7 @@ angular.module('looper.home', ['lbServices'])
                 /**
                  * Save the last tweet we received
                  */
-                $scope.lastTweetId = $scope.tweets[$scope.tweets.length - 1].id;
+                $scope.lastTweetDate = $scope.tweets[$scope.tweets.length - 1].date;
                 } else {
                     $scope.noMoreTweets = true;
                     $scope.$broadcast('scroll.infiniteScrollComplete');
